@@ -8,6 +8,12 @@ enum TicketStatus {
     DONE = "DONE",
 }
 
+enum TicketIcons {
+    OPEN = "🐞",
+    IN_PROGRESS = "⏳",
+    DONE = "✅",
+}
+
 const TicketsPage = () => {
     return (
         <div className="">
@@ -16,7 +22,7 @@ const TicketsPage = () => {
                 <div key={ticket.id} className="border p-4 my-2">
                     <Link href={ticketDetailPath(ticket.id)} className="text-xl font-bold underline">{ticket.title}</Link>
                     <p>{ticket.content}</p>
-                    <p>Status: {TicketStatus[ticket.status as keyof typeof TicketStatus]}</p>
+                    <p>Status: {TicketIcons[ticket.status as keyof typeof TicketIcons]} {TicketStatus[ticket.status as keyof typeof TicketStatus]}</p>
                 </div>
             ))}
         </div>
