@@ -1,3 +1,4 @@
+import { clsx } from 'clsx'
 import Link from "next/link"
 import { initialTickets } from "@/data"
 import { ticketDetailPath } from "@/paths"
@@ -25,7 +26,7 @@ const TicketsPage = () => {
                 {initialTickets.map((ticket) => (
                     <div key={ticket.id} className="border border-slate-100 p-4 my-2 w-full rounded-md max-w-[500px]">
                         <Link href={ticketDetailPath(ticket.id)} className="text-xl font-bold underline">{ticket.title}</Link>
-                        <p className="text-sm text-slate-400 truncate my-1">{ticket.content}</p>
+                        <p className={clsx("text-sm text-slate-400 truncate my-1", { "line-through": ticket.status === "DONE" })}>{ticket.content}</p>
                         <p>Status: {TicketIcons[ticket.status as keyof typeof TicketIcons]} {TicketStatus[ticket.status as keyof typeof TicketStatus]}</p>
                     </div>
                 ))}
