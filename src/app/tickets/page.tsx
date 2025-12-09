@@ -10,7 +10,7 @@ enum TicketStatus {
 
 const TicketsPage = () => {
     return (
-        <div className="flex flex-col p-4">
+        <div className="">
             <h1>Tickets</h1>
             {initialTickets.map((ticket) => (
                 <div key={ticket.id} className="border p-4 my-2">
