@@ -1,32 +1,10 @@
-
 import { clsx } from 'clsx'
 import Link from 'next/link';
-import { ElementType } from 'react';
-import { FaCheckCircle } from "react-icons/fa";
-import { FaRegFolderOpen } from "react-icons/fa";
-import { FaHourglassStart } from "react-icons/fa6";
 import { FiExternalLink } from "react-icons/fi";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ticketDetailPath } from "@/paths"
-
-enum TicketStatus {
-    OPEN = "OPEN",
-    IN_PROGRESS = "IN PROGRESS",
-    DONE = "DONE",
-}
-
-const TicketIcons: Record<string, ElementType> = {
-    OPEN: FaRegFolderOpen,
-    IN_PROGRESS: FaHourglassStart,
-    DONE: FaCheckCircle,
-};
-
-interface TicketProps {
-    id: string;
-    title: string;
-    status: string;
-    content: string;
-}
+import { TicketIcons, TicketStatus } from '../constants';
+import { TicketProps } from '../types';
 
 const Ticket = ({ id, title, status, content }: TicketProps) => {
     return (
