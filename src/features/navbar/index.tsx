@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { PiBugDroidFill } from "react-icons/pi";
+import { Button } from "@/components/ui/button"
 import { homePath, ticketsPath } from "@/paths"
-import { Button } from "./ui/button"
 
 
 const Navbar = () => {
