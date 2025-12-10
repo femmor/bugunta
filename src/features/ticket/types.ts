@@ -3,4 +3,5 @@ export interface TicketProps {
     title: string;
     status: string;
     content: string;
+    isDetailsPage?: boolean;
 }
