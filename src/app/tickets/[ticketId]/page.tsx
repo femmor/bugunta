@@ -1,7 +1,7 @@
 import { PiBugDroidDuotone } from "react-icons/pi";
-import { initialTickets } from "@/data"
 import { TicketItem } from "@/features";
 import { Placeholder } from "@/features";
+import { getTickets } from "@/features/ticket/queries/get-tickets";
 
 type TicketDetailsProps = {
     params: Promise<{ ticketId: string }>;
@@ -9,7 +9,7 @@ type TicketDetailsProps = {
 
 const TicketDetails = async ({ params }: TicketDetailsProps) => {
     const { ticketId } = await params;
-    const ticket = initialTickets.find(ticket => ticket.id === ticketId);
+    const ticket = await getTickets().then(tickets => tickets.find(t => t.id === ticketId));
 
     if (!ticket) {
         return <Placeholder label="Ticket not found" icon showButton iconType={<PiBugDroidDuotone className="mx-auto mb-2 text-primary/40" size={60} />} />;

@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 const TicketSkeleton = () => {
     return (
         <div className='flex flex-col sm:flex-row sm:justify-center gap-2 w-full'>
-            <Card className="w-full sm:max-w-[460px] min-w-0">
+            <Card className="w-full sm:max-w-[580px] min-w-0">
                 <CardHeader className="pb-3">
                     <CardTitle>
                         <Skeleton className="h-5 sm:h-6 w-[200px] sm:w-[250px]" />
