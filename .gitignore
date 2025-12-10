@@ -45,3 +45,4 @@ docker-compose.override.yml
 .docker/
 docker-volumes/
 postgres_data/
+/src/generated/prisma
