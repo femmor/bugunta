@@ -12,7 +12,7 @@ import { ticketDetailPath } from "@/paths"
 import { TicketIcons, TicketStatus } from '../constants';
 import { TicketProps } from '../types';
 
-const Ticket = ({ id, title, status, content }: TicketProps) => {
+const TicketItem = ({ id, title, status, content }: TicketProps) => {
 
     const pathname = usePathname();
     const isDetailsPage = pathname === ticketDetailPath(id);
@@ -60,4 +60,4 @@ const Ticket = ({ id, title, status, content }: TicketProps) => {
         </div>
     )
 }
-export default Ticket
+export default TicketItem
