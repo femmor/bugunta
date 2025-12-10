@@ -1,6 +1,6 @@
 import { PiBugDroidDuotone } from "react-icons/pi";
-import { Placeholder } from "@/components";
 import { initialTickets } from "@/data"
+import { Placeholder } from "@/features";
 
 type TicketPageProps = {
     params: Promise<{ ticketId: string }>;

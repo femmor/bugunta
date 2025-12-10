@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import { Button } from "@/components/ui/button";
 import { homePath } from "@/paths";
-import { Button } from "./ui/button";
 
 
 const Placeholder = ({ label, icon, iconType, showButton, buttonLink, buttonText = "Go Home" }: { label: string, icon?: boolean, iconType?: ReactNode, showButton?: boolean, buttonLink?: string, buttonText?: string }) => {

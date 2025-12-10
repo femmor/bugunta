@@ -1,5 +1,5 @@
-import { Heading, Ticket } from "@/components"
 import { initialTickets } from "@/data"
+import { Heading, Ticket } from "@/features"
 
 const TicketsPage = () => {
     return (
