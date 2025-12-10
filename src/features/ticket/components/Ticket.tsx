@@ -36,7 +36,7 @@ const Ticket = ({ id, title, status, content }: TicketProps) => {
                             const Icon = TicketIcons[status as keyof typeof TicketIcons];
                             return (
                                 <span className='text-xs flex items-center gap-1'><Icon className="inline-block" size={18} color={
-                                    status === "DONE" ? "green" : status === "IN_PROGRESS" ? "orange" : "black"
+                                    status === "DONE" ? "green" : status === "IN_PROGRESS" ? "orange" : "gray"
                                 } /> {TicketStatus[status as keyof typeof TicketStatus]}</span>
                             );
                         })()}
