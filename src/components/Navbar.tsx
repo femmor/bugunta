@@ -1,14 +1,20 @@
 import Link from "next/link"
 import { homePath, ticketsPath } from "@/paths"
+import { Button } from "./ui/button"
 
 const Navbar = () => {
     return (
-        <nav className="supports-backdrop-blur:bg-background/60 fixed top-0 left-0 right-0 z-20 border-b bg-background/95 backdrop-blur flex w-full justify-between px-8 py-4">
+        <nav className="supports-backdrop-blur:bg-background/60 fixed top-0 left-0 right-0 z-20 border-b bg-background/95 backdrop-blur flex w-full items-center justify-between px-8 py-4">
             <div>
-                <Link href={homePath()} className="font-bold">Home</Link>
+                <h1 className="text-lg font-normal"><span className="text-primary font-black">Bug</span>Hunter</h1>
             </div>
             <div>
-                <Link href={ticketsPath()} className="text-sm underline">Tickets</Link>
+                <Button asChild variant="link" className="text-foreground">
+                    <Link href={homePath()}>Home</Link>
+                </Button>
+                <Button asChild variant="link" className="text-foreground">
+                    <Link href={ticketsPath()}>Tickets</Link>
+                </Button>
             </div>
         </nav>
     )
