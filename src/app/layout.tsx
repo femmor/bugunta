@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Bugunta - Bugs Management",
-  description: "Manage your bugs efficiently with Bugunta",
+  title: "Bugunta - Bug Tickets Management",
+  description: "Manage your tech debt efficiently with Bugunta",
 };
 
 export default function RootLayout({

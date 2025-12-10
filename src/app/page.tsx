@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { PiBugDroidFill } from "react-icons/pi"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { ticketsPath } from "@/paths"
@@ -7,9 +8,9 @@ const HomePage = () => {
   return (
     <div className="flex-1 flex flex-col items-center justify-center gap-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tighter">Welcome to Bug Hunter</h1>
+        <h1 className="text-3xl font-normal flex justify-center"><span className="font-black flex items-center tracking-tighter">B<PiBugDroidFill className="text-primary" size={24} />g</span>Hunter</h1>
         <Separator className="my-2 w-24" />
-        <p className="text-sm text-muted-foreground">Manage your bugs efficiently with Bug Hunter</p>
+        <p className="text-sm text-muted-foreground">Manage your tech debt efficiently with Bug Hunter</p>
       </div>
       <div className="flex flex-1 flex-col items-center">
         <Button asChild size="lg" className="bg-primary">
