@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { TicketItem } from "@/features";
-import { getTickets } from "@/features/ticket/queries/get-tickets";
+import { getTicket } from "@/features/ticket/queries/get-ticket";
 
 type TicketDetailsProps = {
     params: Promise<{ ticketId: string }>;
@@ -8,7 +8,7 @@ type TicketDetailsProps = {
 
 const TicketDetails = async ({ params }: TicketDetailsProps) => {
     const { ticketId } = await params;
-    const ticket = await getTickets().then(tickets => tickets.find(t => t.id === ticketId));
+    const ticket = await getTicket(ticketId);
 
     if (!ticket) {
         notFound();

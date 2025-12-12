@@ -1,0 +1,12 @@
+# Local development database connection string
+DATABASE_URL=
+
+# Supabase connection details
+DATABASE_URL=
+
+POSTGRES_USER=
+POSTGRES_PASSWORD=
+POSTGRES_DB=
+
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY=
