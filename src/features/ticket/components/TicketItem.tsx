@@ -54,7 +54,7 @@ const TicketItem = ({ ticket, isDetailsPage }: TicketItemProps) => {
                     </Link>
                 }
                 {isDetailsPage && <>
-                    <EditButton id={ticket?.id} />
+                    <EditButton />
                     <DeleteButton id={ticket?.id} />
                 </>
                 }

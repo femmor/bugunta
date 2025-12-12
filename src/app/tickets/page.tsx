@@ -15,7 +15,6 @@ const TicketsPage = async () => {
                 </CardHeader>
 
                 <CardContent>
-                    {/* Ticket creation form goes here */}
                     <TicketCreateForm />
                 </CardContent>
             </Card>
