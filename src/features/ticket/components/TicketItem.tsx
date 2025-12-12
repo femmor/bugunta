@@ -1,5 +1,6 @@
 "use client";
 
+import { Ticket } from '@prisma/client';
 import { clsx } from 'clsx'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -10,9 +11,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ticketDetailPath } from "@/paths"
 import { TicketIcons, TicketStatus } from '../constants';
-import { TicketProps } from '../types';
 
-const TicketItem = ({ id, title, status, content }: TicketProps) => {
+const TicketItem = ({ id, title, status, content }: Ticket) => {
 
     const pathname = usePathname();
     const isDetailsPage = pathname === ticketDetailPath(id);
@@ -21,7 +21,7 @@ const TicketItem = ({ id, title, status, content }: TicketProps) => {
         <div className='flex flex-col sm:flex-row sm:justify-center gap-2 w-full'>
             <Card
                 key={id}
-                className={`w-full animate-fade-in-from-top ${isDetailsPage ? 'sm:max-w-[580px]' : 'sm:max-w-[460px]'} min-w-0`}
+                className={`w-full animate-fade-in-from-top ${isDetailsPage ? 'sm:max-w-145' : 'sm:max-w-115'} min-w-0`}
                 style={{
                     animationDelay: `${parseInt(id) * 100}ms`,
                     animationFillMode: 'both'
