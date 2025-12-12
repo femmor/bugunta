@@ -48,7 +48,7 @@ const TicketItem = ({ ticket, isDetailsPage }: TicketItemProps) => {
             <div className='flex flex-row sm:flex-col gap-2 sm:gap-y-2 animate-fade-in-from-top justify-end sm:justify-start shrink-0'>
                 {!isDetailsPage &&
                     <Link prefetch={true} href={ticketDetailPath(ticket?.id)} className="shrink-0">
-                        <Button variant="ghost" className='self-start' size='icon' title={`View details for ${ticket?.title}`}>
+                        <Button variant="ghost" className='self-start cursor-pointer' size='icon' title={`View details for ${ticket?.title}`}>
                             <FiExternalLink className="transition-all text-foreground" size={16} />
                         </Button>
                     </Link>
