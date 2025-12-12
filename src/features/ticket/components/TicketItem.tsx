@@ -46,11 +46,13 @@ const TicketItem = ({ ticket, isDetailsPage }: TicketItemProps) => {
                 <CardContent className={clsx("text-sm sm:text-base", { "line-through": ticket?.status === "DONE", "truncate": !isDetailsPage })}>{ticket?.content}</CardContent>
             </Card>
             <div className='flex flex-row sm:flex-col gap-2 sm:gap-y-2 animate-fade-in-from-top justify-end sm:justify-start shrink-0'>
-                {!isDetailsPage && <Button variant="ghost" className='self-start' size='icon' title={`View details for ${ticket?.title}`}>
-                    <Link href={ticketDetailPath(ticket?.id)} className="text-sm text-primary hover:underline shrink-0">
-                        <FiExternalLink className="transition-all text-foreground" size={16} />
+                {!isDetailsPage &&
+                    <Link prefetch={true} href={ticketDetailPath(ticket?.id)} className="shrink-0">
+                        <Button variant="ghost" className='self-start' size='icon' title={`View details for ${ticket?.title}`}>
+                            <FiExternalLink className="transition-all text-foreground" size={16} />
+                        </Button>
                     </Link>
-                </Button>}
+                }
                 {isDetailsPage && <>
                     <EditButton id={ticket?.id} />
                     <DeleteButton id={ticket?.id} />
