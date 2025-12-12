@@ -10,12 +10,21 @@ import { FiExternalLink } from "react-icons/fi";
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ticketDetailPath } from "@/paths"
+import { deleteTicket } from '../actions/delete-ticket';
 import { TicketIcons, TicketStatus } from '../constants';
 
 const TicketItem = ({ id, title, status, content }: Ticket) => {
 
     const pathname = usePathname();
     const isDetailsPage = pathname === ticketDetailPath(id);
+
+    const handleEdit = () => {
+        console.log("Edit ticket with id:", id);
+    }
+
+    const handleDelete = async () => {
+        await deleteTicket(id);
+    }
 
     return (
         <div className='flex flex-col sm:flex-row sm:justify-center gap-2 w-full'>
@@ -50,12 +59,15 @@ const TicketItem = ({ id, title, status, content }: Ticket) => {
                         <FiExternalLink className="transition-all text-foreground" size={16} />
                     </Link>
                 </Button>}
-                <Button variant="ghost" className='self-start cursor-pointer' size='icon' onClick={() => console.log("Edit ticket")} title={`Edit ${title}`}>
-                    <FaRegEdit className="transition-all text-foreground" size={16} />
-                </Button>
-                <Button variant="ghost" className='self-start cursor-pointer' size='icon' onClick={() => console.log("Delete ticket")} title={`Delete ${title}`}>
-                    <FaTrashCan className="transition-all text-destructive" size={16} />
-                </Button>
+                {isDetailsPage && <>
+                    <Button variant="ghost" className='self-start cursor-pointer' size='icon' onClick={handleEdit} title={`Edit ${title}`}>
+                        <FaRegEdit className="transition-all text-foreground" size={16} />
+                    </Button>
+                    <Button variant="ghost" className='self-start cursor-pointer' size='icon' onClick={handleDelete} title={`Delete ${title}`}>
+                        <FaTrashCan className="transition-all text-destructive" size={16} />
+                    </Button>
+                </>
+                }
             </div>
         </div>
     )
