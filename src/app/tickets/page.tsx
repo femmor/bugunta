@@ -1,5 +1,5 @@
 import { Suspense } from "react"
-import CardCompact from "@/components/forms/card-compact"
+import CardCompact from "@/components/card-compact"
 import { Heading, LoadingSpinner, TicketCreateForm, TicketList } from "@/features"
 
 const TicketsPage = async () => {
