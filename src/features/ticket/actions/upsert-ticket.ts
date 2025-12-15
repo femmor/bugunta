@@ -10,7 +10,7 @@ const upsertTicketSchema = zod.object({
     title: zod.string().min(1, "Title is required").max(99, "Title must be at most 100 characters"),
     content: zod.string().min(1, "Content is required").max(1024, "Content must be at most 1000 characters"),
 });
-export const upsertTicket = async (id: string | undefined, _actionState: { message: string }, formData: FormData): Promise<{ message: string }> => {
+export const upsertTicket = async (id: string | undefined, _actionState: { message: string }, formData: FormData): Promise<{ message: string, payload?: FormData }> => {
     try {
         const newTicket = upsertTicketSchema.parse({
             title: formData.get("title"),
@@ -23,7 +23,10 @@ export const upsertTicket = async (id: string | undefined, _actionState: { messa
             create: newTicket,
         });
     } catch (error) {
-        return { message: "There was an error submitting the form. Please try again." };
+        return {
+            message: "There was an error submitting the form. Please try again.",
+            payload: formData
+        };
     }
 
     revalidatePath(ticketsPath());
