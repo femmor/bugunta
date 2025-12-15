@@ -1,6 +1,8 @@
 "use client"
 
 import { Ticket } from "@prisma/client"
+import clsx from "clsx"
+import { useActionState } from "react"
 import { SubmitButton } from "@/components/subnit-button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -12,11 +14,15 @@ type TicketUpsertFormProps = {
 }
 
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
+    const [actionState, action] = useActionState(upsertTicket.bind(null, ticket?.id), {
+        message: "",
+    })
+
 
     return (
         <form
             className="flex flex-col gap-y-2"
-            action={upsertTicket.bind(null, ticket?.id)}
+            action={action}
         >
             <Label htmlFor="title">Title</Label>
             <Input type="text" id="title" name="title" defaultValue={ticket?.title} />
@@ -25,6 +31,10 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
             <Textarea id="content" name="content" defaultValue={ticket?.content} />
 
             <SubmitButton label={ticket ? "Update Ticket" : "Create Ticket"} />
+
+            <span className={clsx("text-center mt-2 text-sm",
+                actionState.message.includes("error") ? "text-red-500" : "text-green-500"
+            )}>{actionState.message}</span>
         </form>
     )
 }
