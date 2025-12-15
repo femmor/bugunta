@@ -3,7 +3,7 @@
 import { Ticket } from "@prisma/client"
 import clsx from "clsx"
 import { useActionState } from "react"
-import { SubmitButton } from "@/components/subnit-button"
+import { SubmitButton } from "@/components/form/subnit-button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -32,9 +32,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
 
             <SubmitButton label={ticket ? "Update Ticket" : "Create Ticket"} />
 
-            <span className={clsx("text-center mt-2 text-sm",
-                actionState.message.includes("error") ? "text-red-500" : "text-green-500"
-            )}>{actionState.message}</span>
+            <span className={clsx("text-center mt-2 text-sm")}>{actionState.message}</span>
         </form>
     )
 }

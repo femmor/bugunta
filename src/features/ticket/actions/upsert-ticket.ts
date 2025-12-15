@@ -3,14 +3,15 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import zod from "zod";
+import { ActionState, fromErrorToActionState } from "@/components/form/uitls/to-action-state";
 import { prisma } from "@/lib/prisma";
 import { ticketDetailPath, ticketsPath } from "@/paths";
 
 const upsertTicketSchema = zod.object({
-    title: zod.string().min(1, "Title is required").max(99, "Title must be at most 100 characters"),
-    content: zod.string().min(1, "Content is required").max(1024, "Content must be at most 1000 characters"),
+    title: zod.string().min(1, "Title must contain at least 1 character").max(99, "Title must be at most 100 characters"),
+    content: zod.string().min(1, "Content must contain at least 1 character").max(1024, "Content must be at most 1000 characters"),
 });
-export const upsertTicket = async (id: string | undefined, _actionState: { message: string }, formData: FormData): Promise<{ message: string, payload?: FormData }> => {
+export const upsertTicket = async (id: string | undefined, _actionState: ActionState, formData: FormData) => {
     try {
         const newTicket = upsertTicketSchema.parse({
             title: formData.get("title"),
@@ -23,10 +24,7 @@ export const upsertTicket = async (id: string | undefined, _actionState: { messa
             create: newTicket,
         });
     } catch (error) {
-        return {
-            message: "There was an error submitting the form. Please try again.",
-            payload: formData
-        };
+        return fromErrorToActionState(error as string, formData);
     }
 
     revalidatePath(ticketsPath());
