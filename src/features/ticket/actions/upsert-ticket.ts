@@ -24,7 +24,7 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
             create: newTicket,
         });
     } catch (error) {
-        return fromErrorToActionState(error as string, formData);
+        return fromErrorToActionState(error, formData);
     }
 
     revalidatePath(ticketsPath());
@@ -33,5 +33,5 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
         redirect(ticketDetailPath(id));
     }
 
-    return { message: "Ticket created successfully." };
+    return { message: "Ticket created successfully.", payload: undefined, fieldErrors: undefined };
 }
