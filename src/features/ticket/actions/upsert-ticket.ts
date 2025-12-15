@@ -3,18 +3,19 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
-import { ticketsPath } from "@/paths";
+import { ticketDetailPath, ticketsPath } from "@/paths";
 
-export const updateTicket = async (id: string, formData: FormData): Promise<void> => {
+export const upsertTicket = async (id: string | undefined, formData: FormData): Promise<void> => {
     try {
         const newTicket = {
             title: formData.get("title") as string,
             content: formData.get("content") as string,
         };
 
-        await prisma.ticket.update({
-            where: { id },
-            data: newTicket,
+        await prisma.ticket.upsert({
+            where: { id: id ?? "" },
+            update: newTicket,
+            create: newTicket,
         });
 
         revalidatePath(ticketsPath());
@@ -23,5 +24,7 @@ export const updateTicket = async (id: string, formData: FormData): Promise<void
         throw error;
     }
 
-    redirect(ticketsPath());
+    if (id) {
+        redirect(ticketDetailPath(id));
+    }
 }

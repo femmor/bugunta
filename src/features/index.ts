@@ -4,7 +4,6 @@ export { default as Navbar } from "./navbar";
 export { default as Placeholder } from "./placeholder";
 export { default as DeleteButton } from "./ticket/components/DeleteButton";
 export { default as EditButton } from "./ticket/components/EditButton";
-export { default as TicketCreateForm } from "./ticket/components/TicketCreateForm";
 export { default as TicketItem } from "./ticket/components/TicketItem";
 export { default as TicketList } from "./ticket/components/TicketList";
-export { default as TicketUpdateForm } from "./ticket/components/TicketUpdateForm";
+export { default as TicketUpsertForm } from "./ticket/components/TicketUpsertForm";

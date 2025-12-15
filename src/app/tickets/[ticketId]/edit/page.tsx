@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { TicketUpdateForm } from "@/features";
+import TicketUpsertForm from "@/features/ticket/components/TicketUpsertForm";
 import { getTicket } from "@/features/ticket/queries/get-ticket";
 
 type TicketEditPageProps = {
@@ -17,7 +17,9 @@ const TicketEditPage = async ({ params }: TicketEditPageProps) => {
     }
 
     return (
-        <TicketUpdateForm ticket={ticket} />
+        <div className="w-full flex flex-col flex-1 self-center mt-5 max-w-145">
+            <TicketUpsertForm ticket={ticket} />
+        </div>
     )
 }
 export default TicketEditPage
