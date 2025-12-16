@@ -4,6 +4,7 @@ import { Ticket } from "@prisma/client"
 import clsx from "clsx"
 import { useActionState } from "react"
 import { SubmitButton } from "@/components/form/subnit-button"
+import { FieldError } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
@@ -27,11 +28,11 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
         >
             <Label htmlFor="title">Title</Label>
             <Input type="text" id="title" name="title" defaultValue={(actionState.payload?.get("title") as string) ?? ticket?.title} />
-            <span className="text-xs text-red-600">{actionState.fieldErrors?.title?.[0]}</span>
+            <FieldError errors={actionState.fieldErrors?.title?.map(message => ({ message }))} />
 
             <Label htmlFor="content">Content</Label>
             <Textarea id="content" name="content" defaultValue={(actionState.payload?.get("content") as string) ?? ticket?.content} />
-            <span className="text-xs text-red-600">{actionState.fieldErrors?.content?.[0]}</span>
+            <FieldError errors={actionState.fieldErrors?.content?.map(message => ({ message }))} />
 
             <SubmitButton label={ticket ? "Update Ticket" : "Create Ticket"} />
 
