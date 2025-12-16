@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import zod from "zod";
-import { ActionState, fromErrorToActionState } from "@/components/form/uitls/to-action-state";
+import { ActionState, fromErrorToActionState, toActionState } from "@/components/form/uitls/to-action-state";
 import { prisma } from "@/lib/prisma";
 import { ticketDetailPath, ticketsPath } from "@/paths";
 
@@ -33,5 +33,5 @@ export const upsertTicket = async (id: string | undefined, _actionState: ActionS
         redirect(ticketDetailPath(id));
     }
 
-    return { message: "Ticket created successfully.", payload: undefined, fieldErrors: undefined };
+    return toActionState("Ticket created successfully.", "SUCCESS");
 }

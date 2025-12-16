@@ -4,6 +4,7 @@ import { Ticket } from "@prisma/client"
 import clsx from "clsx"
 import { useActionState } from "react"
 import { SubmitButton } from "@/components/form/subnit-button"
+import { EMPTY_ACTION_STATE } from "@/components/form/uitls/to-action-state"
 import { FieldError } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -15,11 +16,9 @@ type TicketUpsertFormProps = {
 }
 
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
-    const [actionState, action] = useActionState(upsertTicket.bind(null, ticket?.id), {
-        message: "",
-        fieldErrors: {}
-    })
-
+    const [actionState, action] = useActionState(upsertTicket.bind(null, ticket?.id),
+        EMPTY_ACTION_STATE
+    )
 
     return (
         <form
