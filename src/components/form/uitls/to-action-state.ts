@@ -20,7 +20,7 @@ export const fromErrorToActionState = (error: unknown, formData: FormData): Acti
         // Return the first validation error message from Zod
         return {
             status: "ERROR",
-            message: "",
+            message: error.issues[0]?.message || "Validation error occurred.",
             fieldErrors: error.flatten().fieldErrors,
             payload: formData,
             timeStamp: Date.now()

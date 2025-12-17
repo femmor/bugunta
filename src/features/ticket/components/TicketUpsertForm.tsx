@@ -24,10 +24,10 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
     useActionFeedback({
         actionState, options: {
             onSuccess: () => {
-                alert(actionState.message)
+                console.log(actionState.message)
             },
             onError: () => {
-                alert("There were errors with your submission. Please check the form and try again.")
+                console.log(actionState.message)
             }
         }
     })
