@@ -1,8 +1,8 @@
 "use client"
 
 import { Ticket } from "@prisma/client"
-import clsx from "clsx"
 import { useActionState } from "react"
+import { useActionFeedback } from "@/components/form/hooks/use-action-feedback"
 import { SubmitButton } from "@/components/form/subnit-button"
 import { EMPTY_ACTION_STATE } from "@/components/form/uitls/to-action-state"
 import { FieldError } from "@/components/ui/field"
@@ -20,6 +20,18 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
         EMPTY_ACTION_STATE
     )
 
+    // Provide user feedback based on action state
+    useActionFeedback({
+        actionState, options: {
+            onSuccess: () => {
+                alert(actionState.message)
+            },
+            onError: () => {
+                alert("There were errors with your submission. Please check the form and try again.")
+            }
+        }
+    })
+
     return (
         <form
             className="flex flex-col gap-y-2"
@@ -34,8 +46,6 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
             <FieldError errors={actionState.fieldErrors?.content?.map(message => ({ message }))} />
 
             <SubmitButton label={ticket ? "Update Ticket" : "Create Ticket"} />
-
-            <span className={clsx("text-center mt-2 text-sm")}>{actionState.message}</span>
         </form>
     )
 }
