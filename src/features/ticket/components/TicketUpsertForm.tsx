@@ -2,8 +2,7 @@
 
 import { Ticket } from "@prisma/client"
 import { useActionState } from "react"
-import { toast } from "sonner"
-import { useActionFeedback } from "@/components/form/hooks/use-action-feedback"
+import { Form } from "@/components/form/form"
 import { SubmitButton } from "@/components/form/subnit-button"
 import { EMPTY_ACTION_STATE } from "@/components/form/uitls/to-action-state"
 import { FieldError } from "@/components/ui/field"
@@ -21,26 +20,11 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
         EMPTY_ACTION_STATE
     )
 
-    // Provide user feedback based on action state
-    useActionFeedback({
-        actionState, options: {
-            onSuccess: () => {
-                if (actionState.message) {
-                    toast.success(actionState.message)
-                }
-            },
-            onError: () => {
-                if (actionState.message) {
-                    toast.error(actionState.message)
-                }
-            }
-        }
-    })
-
     return (
-        <form
+        <Form
             className="flex flex-col gap-y-2"
             action={action}
+            actionState={actionState}
         >
             <Label htmlFor="title">Title</Label>
             <Input type="text" id="title" name="title" defaultValue={(actionState.payload?.get("title") as string) ?? ticket?.title} />
@@ -51,7 +35,7 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
             <FieldError errors={actionState.fieldErrors?.content?.map(message => ({ message }))} />
 
             <SubmitButton label={ticket ? "Update Ticket" : "Create Ticket"} />
-        </form>
+        </Form>
     )
 }
 export default TicketUpsertForm
