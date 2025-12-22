@@ -1,6 +1,5 @@
 import { Suspense } from "react"
 import CardCompact from "@/components/card-compact"
-import { RedirectToast } from "@/components/redirect-toast"
 import { Heading, LoadingSpinner, TicketList } from "@/features"
 import TicketUpsertForm from "@/features/ticket/components/TicketUpsertForm"
 
@@ -14,8 +13,6 @@ const TicketsPage = async () => {
                 </Suspense>
                 <TicketList />
             </div>
-
-            <RedirectToast />
         </>
     )
 }

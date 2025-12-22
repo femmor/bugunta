@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ReactNode } from "react";
 import { Toaster } from "sonner";
+import { RedirectToast } from "@/components/redirect-toast";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Navbar } from "@/features";
 
@@ -39,6 +40,7 @@ export default function RootLayout({
           <Toaster
             expand
           />
+          <RedirectToast />
         </ThemeProvider>
       </body>
     </html>
